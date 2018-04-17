@@ -169,6 +169,7 @@ class EventListener implements Listener {
                 if ($reg->getFlag("pvp") === "false" && $event->getDamager() instanceof Player) {
                     $event->getDamager()->sendMessage(TF::RED.'You cannot hurt players in this region.');
                     $event->setCancelled();
+                    return;
                 }
             }
         }
@@ -185,6 +186,7 @@ class EventListener implements Listener {
             if (($region = $this->plugin->getRegionByPlayer($player = $event->getPlayer())) !== "" && !$region->isCommandAllowed($cmd)) {
                 $player->sendMessage(TF::RED.'You cannot use '.$cmd.' in this area.');
                 $event->setCancelled();
+                return;
             }
         }
     }
@@ -232,6 +234,7 @@ class EventListener implements Listener {
             if (!$region->isWhitelisted($player = $event->getPlayer())) {
                 if ($region->getFlag("sleep") === "false") {
                     $event->setCancelled();
+                    return;
                 }
             }
         }
@@ -273,6 +276,7 @@ class EventListener implements Listener {
                 if ((($player = $entity->shootingEntity) !== null) && !$region->isWhitelisted($player)) {
                     $event->setCancelled();
                     $player->sendMessage(TF::RED.'You cannot use ender pearls in this area.');
+                    return;
                 }
             }
         }
