@@ -66,7 +66,7 @@ class EventListener implements Listener {
     public function onInteract(PlayerInteractEvent $event)
     {
         if (isset($this->plugin->creating[$id = ($player = $event->getPlayer())->getRawUniqueId()])) {
-            if ($event->getAction() === $event::RIGHT_CLICK_BLOCK) {
+            if ($event->getAction() === $event::LEFT_CLICK_BLOCK) {
                 $block = $event->getBlock();
                 $player->sendMessage(TF::YELLOW.'Selected position: X'.$block->x.', Y: '.$block->y.', Z: '.$block->z.', Level: '.$block->getLevel()->getName());
                 $this->plugin->creating[$id][] = [$block->x, $block->y, $block->z, $block->getLevel()->getName()];
